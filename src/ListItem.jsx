@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import List from './List'
+import RecipeList from './RecipeList';
 export default class ListItem extends Component {
     render() {
     		const listRecipe = [
@@ -47,6 +48,7 @@ export default class ListItem extends Component {
         return (
             <div style={container}>
             	<h1>Recipe Project</h1>
+				<RecipeList/>
             	<div>
             		<h2>Shopping List</h2>
 	                <div style={listLeft}>
