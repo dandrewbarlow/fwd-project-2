@@ -12,7 +12,10 @@ export default class ListContainer extends Component {
     };
   }
 
-  // getIngredientsList helps translate an array of ingredients from API response into an array of ListItem
+  /*
+   * getIngredientList(objectList) returns an array of <ListItem>s for each
+   * object in objectList. Specific to ingredients for spoonacular API
+  */
   getIngredientList(objectList) {
     let arr = [];
     // ! crashes when not pre-verified w/ Array.isArray
@@ -23,6 +26,10 @@ export default class ListContainer extends Component {
     return arr;
   }
 
+  /*
+   * toggleItem(item) switches a list items state to clicked or unclicked, which
+   * effects which part of the list it renders in
+  */
   toggleItem(item) {
     //   unclicked => clicked
     if (this.state.unclicked.indexOf(item) != -1) {
@@ -69,17 +76,24 @@ export default class ListContainer extends Component {
     // }
 
     return (
+
       <div style={container}>
+
         <div>
+
           <h2>{this.props.title}</h2>
+
           <div style={listLeft}>
             {this.state.unclicked}
             {this.getIngredientList(this.props.recipe.extendedIngredients)}
           </div>
+
           <div style={listRight}>
             <ul style={ListStyle}>{this.state.clicked}</ul>
           </div>
+
         </div>
+
       </div>
     );
   }

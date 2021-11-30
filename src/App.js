@@ -6,7 +6,9 @@ import getRandomRecipes from "./getRecipes";
 import ReactHTMLParser from "react-html-parser";
 
 export default class App extends Component {
+
   constructor(props) {
+
     super(props);
 
     this.state = {
@@ -35,7 +37,7 @@ export default class App extends Component {
     // listContainers has both the Shopping List and Instructions
     let listContainers = [];
 
-    // check if a recipe is selected
+    // if there is a recipe selected, populate an array (listContainers) with <ListContainer> components that have the ingredients and instructions passed as props
     if (Object.entries(this.state.selectedRecipe).length !== 0) {
       listContainers = [
 
@@ -64,7 +66,9 @@ export default class App extends Component {
         <h1>Recipe Project</h1>
 
         <RecipeList
+          // get recipes from state
           recipes={this.state.recipes}
+          // onClick sets the clicked recipe to App.state's selectedRecipe
           selectRecipe={(r) => {
             this.setState({
               recipes: this.state.recipes,
@@ -73,6 +77,7 @@ export default class App extends Component {
           }}
         />
 
+        {/* Display Ingredients & Shopping Lists */}
         {listContainers}
 
       </div>
