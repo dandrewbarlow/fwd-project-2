@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+/*
+ * RecipeList is a component to display random recipes for the user to select
+ * The list itself is fetched from App.js using getRecipes.js and passed into this component as a prop
+*/ 
 export default class RecipeList extends Component {
 
   createRecipeList(recipeObjectList) {

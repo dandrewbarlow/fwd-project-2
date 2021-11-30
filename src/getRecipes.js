@@ -2,12 +2,12 @@
 
 /**
  * getRandomRecipes returns an array of random recipes from the spoonacular API
- * @param  {number} numberOfRecipes - the number of random recipes to return
+ * @param {number} numberOfRecipes - the number of random recipes to return
  */
 export default function getRandomRecipes(numberOfRecipes) {
   let query = new URL("https://api.spoonacular.com/recipes/random");
 
-  // API key defined in .env file
+  // ! in order to run, must have API key defined in .env as REACT_APP_API_KEY
   let API_KEY = process.env.REACT_APP_API_KEY;
 
   // api settings for random recipes found here:

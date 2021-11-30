@@ -15,6 +15,9 @@ export default class App extends Component {
     };
   }
 
+  /**
+   * on mount fetch recipes and store them in state
+   */
   componentDidMount() {
     getRandomRecipes(5)
       .then((r) => {
@@ -26,19 +29,30 @@ export default class App extends Component {
   }
 
   render() {
+
+    // Construct lists
+
+    // listContainers has both the Shopping List and Instructions
     let listContainers = [];
 
+    // check if a recipe is selected
     if (Object.entries(this.state.selectedRecipe).length !== 0) {
       listContainers = [
+
+        // Shopping List
         <ListContainer
           title="Shopping List"
           recipe={this.state.selectedRecipe}
           key={this.state.selectedRecipe.id + "ingredients"}
         />,
 
+        // Instructions
         <ListContainer
           title="Instructions"
           recipe={this.state.selectedRecipe}
+          // ? NOTE: using new library - ReactHTMLParser
+          // Spoonacular API returns html list for instructions, this is a safe
+          // and easy way to translate that to a list
           listItems={ReactHTMLParser(this.state.selectedRecipe.instructions)}
           key={this.state.selectedRecipe.id + "instructions"}
         />

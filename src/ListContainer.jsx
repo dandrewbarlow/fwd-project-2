@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ListItem from "./ListItem";
 
 export default class ListContainer extends Component {
+
   constructor(props) {
     super(props);
 
@@ -11,8 +12,10 @@ export default class ListContainer extends Component {
     };
   }
 
+  // getIngredientsList helps translate an array of ingredients from API response into an array of ListItem
   getIngredientList(objectList) {
     let arr = [];
+    // ! crashes when not pre-verified w/ Array.isArray
     Array.isArray(objectList) &&
       objectList.forEach((object) => {
         arr.push(<ListItem key={object.id} object={object} />);
@@ -38,6 +41,7 @@ export default class ListContainer extends Component {
   }
 
   render() {
+    // ! NOTE: I changed a lot of code and haven't re-applied the style rules
     var ListStyle = {
       margin: "10px",
     };
