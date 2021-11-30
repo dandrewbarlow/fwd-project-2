@@ -7,9 +7,18 @@ export default class ListContainer extends Component {
     super(props);
 
     this.state = {
-      unclicked: [],
-      clicked: [],
+      need: [],
+      have: [],
     };
+
+
+  }
+
+  componentDidMount() {
+    this.setState({
+      need: this.props.recipe.extendedIngredients,
+      have: [],
+    })
   }
 
   /*
@@ -21,30 +30,39 @@ export default class ListContainer extends Component {
     // ! crashes when not pre-verified w/ Array.isArray
     Array.isArray(objectList) &&
       objectList.forEach((object) => {
-        arr.push(<ListItem key={object.id} object={object} />);
+        arr.push(<ListItem key={object.id} object={object} handleClick={() => this.toggleItem(object.id)}/>);
       });
     return arr;
   }
 
   /*
-   * toggleItem(item) switches a list items state to clicked or unclicked, which
+   * toggleItem(item) switches a list items state to have or need, which
    * effects which part of the list it renders in
   */
-  toggleItem(item) {
-    //   unclicked => clicked
-    if (this.state.unclicked.indexOf(item) != -1) {
+  toggleItem(id) {
+
+    //   need => have
+    // if (this.state.need.find(object => object.key === id) !== undefined) {
+      let li = this.state.need.find(object => object.id === id);
+
+      console.log(li);
+      console.log(li.original);
+
+      let h = this.state.have;
+      h.push(li);
+
       this.setState({
-        unclicked: this.state.unclicked.filter((li) => li !== item),
-        clicked: this.state.clicked.push(item),
+        need: this.state.need.filter((object) => object.id !== id),
+        have: h,
       });
-    }
-    // clicked => unclicked
-    else if (this.state.clicked.indexOf(item) != -1) {
-      this.setState({
-        unclicked: this.state.unclicked.push(item),
-        clicked: this.state.clicked.filter((li) => li !== item),
-      });
-    }
+    // }
+    // have => need
+    // else if (this.state.have.indexOf(item) !== -1) {
+    //   this.setState({
+    //     need: this.state.need.push(item),
+    //     have: this.state.have.filter((li) => li !== item),
+    //   });
+    // }
   }
 
   render() {
@@ -67,6 +85,7 @@ export default class ListContainer extends Component {
     var container = {
       width: "75%",
       margin: "auto",
+      marginBottom: "20%",
     };
 
     // let listItems = [];
@@ -79,20 +98,15 @@ export default class ListContainer extends Component {
 
       <div style={container}>
 
-        <div>
-
           <h2>{this.props.title}</h2>
 
           <div style={listLeft}>
-            {this.state.unclicked}
-            {this.getIngredientList(this.props.recipe.extendedIngredients)}
+            {this.getIngredientList(this.state.need)}
           </div>
 
           <div style={listRight}>
-            <ul style={ListStyle}>{this.state.clicked}</ul>
+            <ul style={ListStyle}>{this.getIngredientList(this.state.have)}</ul>
           </div>
-
-        </div>
 
       </div>
     );

@@ -14,8 +14,8 @@ export default class ListItem extends Component {
     };
     return (
       <li key={this.props.object.id}>
-        <span>{this.props.object.name}</span>
-        <button style={buttonStyle}>Click</button>
+        <span>{this.props.object.original}</span>
+        <button style={buttonStyle} onClick={this.props.handleClick}>Click</button>
       </li>
     );
   }
