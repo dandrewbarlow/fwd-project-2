@@ -42,7 +42,11 @@ export default class ListContainer extends Component {
   toggleItem(id) {
 
     //   need => have
-    // if (this.state.need.find(object => object.key === id) !== undefined) {
+    if (
+      this.state.need.find(object => object.id === id) !== undefined
+      && 
+      this.state.have.find(object => object.id === id) === undefined
+      ) {
       let li = this.state.need.find(object => object.id === id);
 
       console.log(li);
@@ -55,14 +59,28 @@ export default class ListContainer extends Component {
         need: this.state.need.filter((object) => object.id !== id),
         have: h,
       });
-    // }
+    }
+
     // have => need
-    // else if (this.state.have.indexOf(item) !== -1) {
-    //   this.setState({
-    //     need: this.state.need.push(item),
-    //     have: this.state.have.filter((li) => li !== item),
-    //   });
-    // }
+    if (
+      this.state.have.find(object => object.id === id) !== undefined
+      &&
+      this.state.need.find(object => object.id === id) === undefined
+      ) {
+      let li = this.state.have.find(object => object.id === id);
+
+      console.log(li + 'random');
+      console.log(li.original);
+
+      let n = this.state.need;
+      n.push(li);
+
+      this.setState({
+        need: n,
+        have: this.state.have.filter((object) => object.id !== id),
+      });
+    }
+
   }
 
   render() {
@@ -101,11 +119,15 @@ export default class ListContainer extends Component {
           <h2>{this.props.title}</h2>
 
           <div style={listLeft}>
-            {this.getIngredientList(this.state.need)}
+            <ul>
+              {this.getIngredientList(this.state.need)}
+            </ul>
           </div>
 
           <div style={listRight}>
-            <ul style={ListStyle}>{this.getIngredientList(this.state.have)}</ul>
+            <ul style={ListStyle}>
+              {this.getIngredientList(this.state.have)}
+            </ul>
           </div>
 
       </div>
