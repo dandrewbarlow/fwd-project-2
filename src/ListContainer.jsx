@@ -103,7 +103,7 @@ export default class ListContainer extends Component {
     var container = {
       width: "75%",
       margin: "auto",
-      marginBottom: "20%",
+      overflow: 'hidden',
     };
 
     // let listItems = [];

@@ -32,7 +32,7 @@ export default class App extends Component {
 
   render() {
     let instructionsStyle = {
-      marginTop: "35%",
+      overflow: "hidden",
     }
 
     // Construct lists
