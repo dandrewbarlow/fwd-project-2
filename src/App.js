@@ -46,24 +46,14 @@ export default class App extends Component {
 
         // Shopping List
         <ListContainer
-          title="Shopping List"
+
+          title="My Shopping List"
           recipe={this.state.selectedRecipe}
           listItems={this.state.selectedRecipe.extendedIngredients}
           key={this.state.selectedRecipe.id + "ingredients"}
         />,
 
-        // Instructions
-        // <ListContainer
-        //   title="Instructions"
-        //   recipe={this.state.selectedRecipe}
-        //   // ? NOTE: using new library - ReactHTMLParser
-        //   // Spoonacular API returns html list for instructions, this is a safe
-        //   // and easy way to translate that to a list
-        //   listItems={ReactHTMLParser(this.state.selectedRecipe.instructions)}
-        //   key={this.state.selectedRecipe.id + "instructions"}
-        // />
-
-        <div style={instructionsStyle}>
+        <div class="instruct" style={instructionsStyle}>
           {ReactHTMLParser(this.state.selectedRecipe.instructions)}
         </div>
       ];
@@ -71,7 +61,7 @@ export default class App extends Component {
 
     return (
       <div>
-        <h1>Recipe Project</h1>
+        <h1>Recipe Book</h1>
 
         <RecipeList
           // get recipes from state

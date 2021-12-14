@@ -12,7 +12,7 @@ export default class RecipeList extends Component {
       recipeObjectList.forEach((recipe) => {
         arr.push(
           <li key={recipe.id}>
-            <button onClick={() => this.props.selectRecipe(recipe)}>
+            <button id="btn" onClick={() => this.props.selectRecipe(recipe)}>
               {recipe.title}
             </button>
           </li>
@@ -25,7 +25,7 @@ export default class RecipeList extends Component {
   render() {
     return (
       <div id="recipeList">
-        <h2>Recipes</h2>
+        <h2> </h2>
 
         <ul>{this.createRecipeList(this.props.recipes)}</ul>
       </div>

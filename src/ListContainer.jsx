@@ -88,20 +88,21 @@ export default class ListContainer extends Component {
     var ListStyle = {
       margin: "10px",
     };
+
     var listLeft = {
+
       float: "left",
       position: "relative",
-      background: "orange",
       width: "45%",
     };
+
     var listRight = {
       float: "right",
       position: "relative",
-      background: "orange",
       width: "45%",
     };
     var container = {
-      width: "75%",
+      width: "80%",
       margin: "auto",
       overflow: 'hidden',
     };
@@ -114,18 +115,18 @@ export default class ListContainer extends Component {
 
     return (
 
-      <div style={container}>
+      <div style={container} id="shoppingListText">
 
           <h2>{this.props.title}</h2>
 
-          <div style={listLeft}>
+          <div style={listLeft} id="leftRecipeText">
             <ul>
               {this.getIngredientList(this.state.need)}
             </ul>
           </div>
 
-          <div style={listRight}>
-            <ul style={ListStyle}>
+          <div style={listRight} id="rightRecipeText">
+            <ul style={ListStyle} id="containerRight">
               {this.getIngredientList(this.state.have)}
             </ul>
           </div>
